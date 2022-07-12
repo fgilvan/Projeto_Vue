@@ -1,14 +1,19 @@
 <template>
   <div>
-    <ComponenteTitulo texto="Aluno" />
-
-    <input
-      type="text"
-      v-on:keyup.enter="addAluno"
-      placeholder="Nome do Aluno"
-      v-model="nome"
+    <ComponenteTitulo
+      :texto="professorid ? 'Professor: ' + professoratual.nome : 'Aluno'"
     />
-    <button @click="addAluno" class="btn btnInput">Adicionar</button>
+
+    <div v-if="professorid != undefined">
+      <input
+        type="text"
+        v-on:keyup.enter="addAluno"
+        placeholder="Nome do Aluno"
+        v-model="nome"
+      />
+      <button @click="addAluno" class="btn btnInput">Adicionar</button>
+    </div>
+
     <table>
       <thead>
         <th>Mat.</th>
@@ -16,7 +21,7 @@
         <th>Opções</th>
       </thead>
       <tbody v-if="alunos.length > 0">
-        <tr v-for="(aluno, index) in alunos" :key="index">
+        <tr v-for="aluno in alunos" :key="aluno.id">
           <td>{{ aluno.id }}</td>
           <td>{{ aluno.nome }} {{ aluno.sobrenome }}</td>
           <td>
@@ -44,18 +49,28 @@ export default {
   data() {
     return {
       titulo: "Aluno",
+      professorid: this.$route.params.prof_id,
+      professoratual: {},
       nome: "",
       alunos: [],
     };
   },
   created() {
-    Api.get("/alunos").then((alunos) => (this.alunos = alunos.data));
+    if (this.professorid) {
+      this.carregueProfessorAtual(this.professorid);
+      Api.get("/alunos/?professor.id=" + this.professorid).then(
+        (alunos) => (this.alunos = alunos.data)
+      );
+    } else {
+      Api.get("/alunos").then((alunos) => (this.alunos = alunos.data));
+    }
   },
   methods: {
     addAluno() {
       let _aluno = {
         nome: this.nome,
         sobrenome: this.sobrenome,
+        professor: this.professoratual,
       };
 
       Api.post("/alunos", _aluno).then((res) => {
@@ -66,8 +81,6 @@ export default {
         _aluno.id = res.data.id;
         this.alunos.push(_aluno);
         this.nome = "";
-
-        return res;
       });
     },
     remover(aluno) {
@@ -77,6 +90,11 @@ export default {
 
       this.alunos.splice(indice, 1);
     },
+    carregueProfessorAtual(idProfessor) {
+      Api.get("/professores/" + idProfessor).then((professor) => {
+        this.professoratual = professor.data;
+      });
+    },
   },
 };
 </script>
@@ -84,6 +102,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 input {
+  width: calc(100% - 195px);
   border: 0;
   padding: 20px;
   font-size: 1.3em;

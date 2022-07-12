@@ -1,14 +1,16 @@
 <template>
-  <ComponenteAlunos />
+  <ComponenteNav />
+  <div class="marginPrincipal">
+    <router-view :key="$route.fullPath"></router-view>
+  </div>
 </template>
-
 <script>
-import ComponenteAlunos from "./components/Aluno/ComponenteAlunos.vue";
+import ComponenteNav from "./components/_nav/ComponenteNav.vue";
 
 export default {
   name: "App",
   components: {
-    ComponenteAlunos,
+    ComponenteNav,
   },
 };
 </script>
@@ -25,7 +27,14 @@ html {
   margin: 0;
   height: 100%;
 }
+
+.marginPrincipal {
+  width: 50%;
+  margin: auto;
+}
+
 #app {
+  width: 100%;
 }
 
 .btn_Danger {

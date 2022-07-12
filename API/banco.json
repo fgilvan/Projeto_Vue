@@ -1,16 +1,50 @@
 {
-  "alunos": [
+  "professores": [
     {
-      "nome": "Marcos Paulo",
-      "id": 1
+      "id": 1,
+      "nome": "Paulo"
     },
     {
-      "nome": "Aluno Teste",
-      "id": 3
+      "id": 2,
+      "nome": "Manoel"
+    },
+    {
+      "id": 3,
+      "nome": "José"
+    }
+  ],
+  "alunos": [
+    {
+      "nome": "Marcos Paulo1",
+      "id": 1,
+      "professor": {
+        "id": 1,
+        "nome": "Paulo"
+      }
     },
     {
       "nome": "Roberto",
-      "id": 4
+      "id": 4,
+      "professor": {
+        "id": 1,
+        "nome": "Paulo"
+      }
+    },
+    {
+      "nome": "Joao",
+      "professor": {
+        "id": 2,
+        "nome": "Manoel"
+      },
+      "id": 5
+    },
+    {
+      "nome": "asdf",
+      "professor": {
+        "id": 2,
+        "nome": "Manoel"
+      },
+      "id": 6
     }
   ]
 }
