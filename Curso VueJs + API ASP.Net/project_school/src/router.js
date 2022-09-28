@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import ComponenteAlunos from "./components/Aluno/ComponenteAlunos.vue";
 import ComponenteProfessores from "./components/Professor/ComponenteProfessor.vue";
 import ComponenteSobre from "./components/Sobre/ComponenteSobre.vue";
+import ComponenteAlunoDetalhe from "./components/Aluno/ComponenteAlunoDetalhe.vue";
 
 const routes = [
         {
@@ -11,13 +12,18 @@ const routes = [
             component: ComponenteProfessores
         },{
             path: '/alunos/:prof_id',
-            nome: 'Alunos',
+            nome: 'AlunosPorProfessor',
             component: ComponenteAlunos
         },{
             path: '/todosalunos',
             nome: 'Alunos',
             component: ComponenteAlunos
         },{
+            path: '/alunoDetalhe/:id',
+            nome: 'AlunosDetalhe',
+            component: ComponenteAlunoDetalhe
+        }
+        ,{
             path: '/sobre',
             nome: 'Sobre',
             component: ComponenteSobre

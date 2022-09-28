@@ -15,16 +15,18 @@
   ],
   "alunos": [
     {
-      "nome": "Marcos Paulo1",
       "id": 1,
+      "nome": "Marcos ",
+      "sobrenome": "Paulo",
+      "dataNasc": "01/02/2020",
       "professor": {
         "id": 1,
         "nome": "Paulo"
       }
     },
     {
-      "nome": "Roberto",
       "id": 4,
+      "nome": "Roberto ",
       "professor": {
         "id": 1,
         "nome": "Paulo"
@@ -45,6 +47,14 @@
         "nome": "Manoel"
       },
       "id": 6
+    },
+    {
+      "id": 7,
+      "nome": "Romario",
+      "professor": {
+        "id": 3,
+        "nome": "José"
+      }
     }
   ]
 }

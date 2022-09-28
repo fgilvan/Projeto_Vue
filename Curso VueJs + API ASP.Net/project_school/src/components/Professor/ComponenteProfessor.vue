@@ -9,9 +9,9 @@
       </thead>
       <tbody v-if="professores.length > 0">
         <tr v-for="(professor, index) in professores" :key="index">
-          <td>{{ professor.id }}</td>
+          <td class="colPequeno">{{ professor.id }}</td>
           <router-link
-            v-bind:to="`/alunos/${professor.id}`"
+            :to="`/alunos/${professor.id}`"
             custom
             v-slot="{ navigate }"
           >
@@ -19,7 +19,7 @@
               {{ professor.nome }} {{ professor.sobrenome }}
             </td>
           </router-link>
-          <td>
+          <td class="colPequeno">
             {{ professor.qtdAlunos }}
           </td>
         </tr>
@@ -57,7 +57,9 @@ export default {
         professor = {
           id: professor.id,
           nome: professor.nome,
-          qtdAlunos: this.alunos.filter(aluno => aluno.professor.id == professor.id).length,
+          qtdAlunos: this.alunos.filter(
+            (aluno) => aluno.professor.id == professor.id
+          ).length,
         };
 
         this.professores[index] = professor;
@@ -69,9 +71,13 @@ export default {
         this.ObtemQtdAlunosPorProfessor();
       });
     },
-  }
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.colPequeno {
+  text-align: center;
+  width: 20%;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <ComponenteNav />
   <div class="marginPrincipal">
-    <router-view :key="$route.fullPath"></router-view>
+    <router-view/>
   </div>
 </template>
 <script>
@@ -78,5 +78,8 @@ table thead th {
 }
 .colPequeno {
   width: 5%;
+  text-align: right;
+  background-color: rgb(125, 217, 245);
+  font-weight: bold;
 }
 </style>
