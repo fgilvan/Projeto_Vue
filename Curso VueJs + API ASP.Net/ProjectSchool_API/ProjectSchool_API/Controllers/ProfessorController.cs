@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectSchool_API.Data;
+using ProjectSchool_API.Data.Interface;
 using ProjectSchool_API.Models;
 
 namespace ProjectSchool_API.Controllers
@@ -13,8 +14,8 @@ namespace ProjectSchool_API.Controllers
     [ApiController]
     public class ProfessorController : Controller
     {
-        private readonly IRepository _repository;
-        public ProfessorController(IRepository repository)
+        private readonly IRepositoryProfessor _repository;
+        public ProfessorController(IRepositoryProfessor repository)
         {
             _repository = repository;
         }

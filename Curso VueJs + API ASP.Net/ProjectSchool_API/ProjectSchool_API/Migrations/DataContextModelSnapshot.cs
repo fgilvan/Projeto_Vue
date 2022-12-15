@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectSchool_API.Data;
+using ProjectSchool_API.Data.Implementacao;
 
 namespace ProjectSchool_API.Migrations
 {

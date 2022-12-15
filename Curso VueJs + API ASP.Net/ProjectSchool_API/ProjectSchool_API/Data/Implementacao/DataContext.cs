@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ProjectSchool_API.Models;
 
-namespace ProjectSchool_API.Data
+namespace ProjectSchool_API.Data.Implementacao
 {
     public class DataContext: DbContext{
 

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectSchool_API.Data;
+using ProjectSchool_API.Data.Implementacao;
+using ProjectSchool_API.Data.Interface;
 using ProjectSchool_API.Models;
 
 namespace ProjectSchool_API.Controllers
@@ -13,9 +15,9 @@ namespace ProjectSchool_API.Controllers
     [ApiController]
     public class AlunoController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryAluno _repository;
 
-        public AlunoController(IRepository repository)
+        public AlunoController(IRepositoryAluno repository)
         {
             _repository = repository;
         }

@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProjectSchool_API.Data;
+using ProjectSchool_API.Data.Implementacao;
+using ProjectSchool_API.Data.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +37,9 @@ namespace ProjectSchool_API
             .AddControllers()
             .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddScoped<IRepository, Repository>();
+            services
+            .AddScoped<IRepositoryAluno, RepositoryAluno>()
+            .AddScoped<IRepositoryProfessor, RepositoryProfessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
