@@ -56,7 +56,6 @@ namespace ProjectSchool_API.Data.Implementacao
             }
 
             query = query
-            .AsNoTracking()
             .Where(x => x.Id == alunoId);
 
             return await query.FirstOrDefaultAsync();

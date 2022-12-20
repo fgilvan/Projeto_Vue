@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ProjectSchool_API.Models
 {
-    public class Aluno
+    public class Aluno: ModelBase
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string DataNasc { get; set; }

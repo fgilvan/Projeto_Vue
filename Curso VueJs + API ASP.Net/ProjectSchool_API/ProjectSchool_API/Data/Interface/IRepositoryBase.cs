@@ -8,6 +8,8 @@ namespace ProjectSchool_API.Data.Interface
 {
     public interface IRepositoryBase<T> where T: class
     {
+         Task<T> GetAsyncById(int id);
+
          void Add<T>(T entity);
 
         void Update<T>(T entity);

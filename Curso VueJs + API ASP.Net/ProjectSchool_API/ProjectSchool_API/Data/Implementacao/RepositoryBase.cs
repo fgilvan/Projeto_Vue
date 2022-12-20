@@ -17,6 +17,11 @@ namespace ProjectSchool_API.Data.Implementacao
             Context = context;
         }
 
+        public async Task<T> GetAsyncById(int id)
+        {
+            return await Context.FindAsync<T>(id);
+        }
+
         //GERAL
         public void Add<T>(T entity)
         {
