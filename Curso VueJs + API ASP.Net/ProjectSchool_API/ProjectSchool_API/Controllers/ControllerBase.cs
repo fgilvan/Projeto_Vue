@@ -51,7 +51,7 @@ namespace ProjectSchool_API.Controllers
                 if (obj == null)
                     return NotFound();
 
-                Repository.Update(obj);
+                Repository.Update(model);
 
                 if (await Repository.SaveChangesAsync())
                 {

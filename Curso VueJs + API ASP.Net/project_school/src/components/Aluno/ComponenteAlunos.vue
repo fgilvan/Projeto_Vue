@@ -40,7 +40,11 @@
         </tr>
       </tbody>
       <tfoot v-else>
-        Nenhum aluno encontrado.
+        <tr>
+          <td colspan="3" style="text-align: center">
+            <h5>Nenhum aluno encontrado.</h5>
+          </td>
+        </tr>
       </tfoot>
     </table>
   </div>
@@ -66,11 +70,11 @@ export default {
   created() {
     if (this.professorid) {
       this.carregueProfessorAtual(this.professorid);
-      Api.get("/alunos/?professor.id=" + this.professorid).then(
+      Api.get("/aluno/ByProfessor/" + this.professorid).then(
         (alunos) => (this.alunos = alunos.data)
       );
     } else {
-      Api.get("/alunos").then((alunos) => (this.alunos = alunos.data));
+      Api.get("/aluno").then((alunos) => (this.alunos = alunos.data));
     }
   },
   methods: {
@@ -81,7 +85,7 @@ export default {
         professor: this.professoratual,
       };
 
-      Api.post("/alunos", _aluno).then((res) => {
+      Api.post("/aluno", _aluno).then((res) => {
         if (!res.data) {
           return;
         }
@@ -94,12 +98,12 @@ export default {
     remover(aluno) {
       var indice = this.alunos.indexOf(aluno);
 
-      Api.delete(`/alunos/${aluno.id}`);
+      Api.delete(`/aluno/${aluno.id}`);
 
       this.alunos.splice(indice, 1);
     },
     carregueProfessorAtual(idProfessor) {
-      Api.get("/professores/" + idProfessor).then((professor) => {
+      Api.get("/professor/" + idProfessor).then((professor) => {
         this.professoratual = professor.data;
       });
     },

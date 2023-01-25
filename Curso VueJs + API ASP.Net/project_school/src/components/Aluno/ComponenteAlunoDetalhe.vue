@@ -92,13 +92,13 @@ export default {
   methods: {
     CarregueAluno() {
       if (this.alunoId) {
-        Api.get("/alunos/" + this.alunoId).then(
+        Api.get("/aluno/" + this.alunoId).then(
           (alunos) => (this.aluno = alunos.data)
         );
       }
     },
     CarregueProfessores() {
-      Api.get("/professores").then((professores) => {
+      Api.get("/professor").then((professores) => {
         this.professores = professores.data;
       });
     },
@@ -114,7 +114,7 @@ export default {
         professor: this.aluno.professor
       }
 
-      Api.put("/alunos/" + _alunoEditar.id, _alunoEditar);
+      Api.put("/aluno/" + _alunoEditar.id, _alunoEditar);
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
     cancelar(){

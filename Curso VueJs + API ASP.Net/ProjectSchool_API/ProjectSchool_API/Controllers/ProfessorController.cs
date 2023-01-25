@@ -39,5 +39,20 @@ namespace ProjectSchool_API.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("{professorId}")]
+        public async Task<IActionResult> GetByAlunoId(int professorId)
+        {
+            try
+            {
+                var result = await _repository.GetProfessorAsyncById(professorId, true);
+
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+        }
     }
 }

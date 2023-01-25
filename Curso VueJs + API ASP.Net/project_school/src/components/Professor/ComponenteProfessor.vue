@@ -11,7 +11,7 @@
         <tr v-for="(professor, index) in professores" :key="index">
           <td class="colPequeno">{{ professor.id }}</td>
           <router-link
-            :to="`/alunos/${professor.id}`"
+            :to="`/aluno/${professor.id}`"
             custom
             v-slot="{ navigate }"
           >
@@ -25,7 +25,11 @@
         </tr>
       </tbody>
       <tfoot v-else>
-        Nenhum professor encontrado.
+        <tr>
+          <td colspan="3" style="text-align: center">
+            <h5>Nenhum professor encontrado.</h5>
+          </td>
+        </tr>
       </tfoot>
     </table>
   </div>
@@ -46,7 +50,7 @@ export default {
     };
   },
   created() {
-    Api.get("/alunos").then((alunos) => {
+    Api.get("/aluno").then((alunos) => {
       this.alunos = alunos.data;
       this.carregarProfessores();
     });
@@ -66,7 +70,7 @@ export default {
       });
     },
     carregarProfessores() {
-      Api.get("/professores").then((professores) => {
+      Api.get("/professor").then((professores) => {
         this.professores = professores.data;
         this.ObtemQtdAlunosPorProfessor();
       });

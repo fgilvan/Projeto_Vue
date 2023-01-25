@@ -11,7 +11,7 @@ const routes = [
             nome: 'Professores',
             component: ComponenteProfessores
         },{
-            path: '/alunos/:prof_id',
+            path: '/aluno/:prof_id',
             nome: 'AlunosPorProfessor',
             component: ComponenteAlunos
         },{
