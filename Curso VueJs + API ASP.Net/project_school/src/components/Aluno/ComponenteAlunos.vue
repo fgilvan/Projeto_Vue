@@ -41,7 +41,7 @@
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="3" style="text-align: center">
+          <td colspan="3">
             <h5>Nenhum aluno encontrado.</h5>
           </td>
         </tr>
@@ -82,7 +82,8 @@ export default {
       let _aluno = {
         nome: this.nome,
         sobrenome: this.sobrenome,
-        professor: this.professoratual,
+        dataNasc: "",
+        professorid: this.professoratual.id,
       };
 
       Api.post("/aluno", _aluno).then((res) => {
@@ -135,5 +136,9 @@ input {
   padding: 20px;
   margin: 0px;
   border: 0px;
+}
+
+tfoot > tr > td{
+  text-align: center;
 }
 </style>

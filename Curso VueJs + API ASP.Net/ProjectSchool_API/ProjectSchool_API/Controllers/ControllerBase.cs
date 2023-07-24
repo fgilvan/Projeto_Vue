@@ -57,7 +57,7 @@ namespace ProjectSchool_API.Controllers
                 {
                     obj = await Repository.GetAsyncById(id);
 
-                    return Created(Rota + model.Id, model);
+                    return Created(Rota + model.Id, obj);
                 }
             }
             catch (System.Exception ex)

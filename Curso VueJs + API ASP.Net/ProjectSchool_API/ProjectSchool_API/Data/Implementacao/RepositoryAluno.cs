@@ -15,6 +15,11 @@ namespace ProjectSchool_API.Data.Implementacao
         {
         }
 
+        public override Task<Aluno> GetAsyncById(int id)
+        {
+            return GetAlunoAsyncById(id, true);
+        }
+
         public async Task<Aluno[]> GetAllAlunosAsync(bool includeProfessor)
         {
             IQueryable<Aluno> query = Context.Alunos;
@@ -56,6 +61,7 @@ namespace ProjectSchool_API.Data.Implementacao
             }
 
             query = query
+            .AsNoTracking()
             .Where(x => x.Id == alunoId);
 
             return await query.FirstOrDefaultAsync();

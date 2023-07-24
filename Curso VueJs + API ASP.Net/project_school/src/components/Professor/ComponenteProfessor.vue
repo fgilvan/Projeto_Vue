@@ -26,7 +26,7 @@
       </tbody>
       <tfoot v-else>
         <tr>
-          <td colspan="3" style="text-align: center">
+          <td colspan="3">
             <h5>Nenhum professor encontrado.</h5>
           </td>
         </tr>
@@ -83,5 +83,9 @@ export default {
 .colPequeno {
   text-align: center;
   width: 20%;
+}
+
+tfoot > tr > td{
+ text-align: center;
 }
 </style>

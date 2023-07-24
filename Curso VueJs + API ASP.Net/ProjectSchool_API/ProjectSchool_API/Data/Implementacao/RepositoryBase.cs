@@ -17,9 +17,13 @@ namespace ProjectSchool_API.Data.Implementacao
             Context = context;
         }
 
-        public async Task<T> GetAsyncById(int id)
+        public virtual async Task<T> GetAsyncById(int id)
         {
-            return await Context.FindAsync<T>(id);
+            var obj = await Context.FindAsync<T>(id);
+
+            Context.Entry(obj).State = EntityState.Detached;
+
+            return obj;
         }
 
         //GERAL

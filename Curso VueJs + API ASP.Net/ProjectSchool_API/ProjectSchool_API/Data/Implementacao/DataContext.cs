@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ProjectSchool_API.Models;
@@ -40,21 +41,21 @@ namespace ProjectSchool_API.Data.Implementacao
                         Id = 1,
                         Nome = "Maria",
                         Sobrenome = "Jose",
-                        DataNasc = "20/01/1990",
+                        DataNasc = new DateTime(2000, 01, 01),
                         ProfessorId = 1
                     },
                     new Aluno{
                         Id = 2,
                         Nome = "Joao",
                         Sobrenome = "Paulo",
-                        DataNasc = "20/01/1995",
+                        DataNasc = new DateTime(2020, 01, 01),
                         ProfessorId = 2
                     },
                     new Aluno{
                         Id = 3,
                         Nome = "Alex",
                         Sobrenome = "Pereira",
-                        DataNasc = "25/05/1990",
+                        DataNasc = new DateTime(1990, 01, 01),
                         ProfessorId = 3
                     },
                 });

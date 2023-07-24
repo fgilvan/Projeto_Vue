@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjectSchool_API.Migrations
 {
-    public partial class init : Migration
+    public partial class CargaInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +28,7 @@ namespace ProjectSchool_API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
                     Sobrenome = table.Column<string>(nullable: true),
-                    DataNasc = table.Column<string>(nullable: true),
+                    DataNasc = table.Column<DateTime>(nullable: false),
                     ProfessorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -59,17 +60,17 @@ namespace ProjectSchool_API.Migrations
             migrationBuilder.InsertData(
                 table: "Alunos",
                 columns: new[] { "Id", "DataNasc", "Nome", "ProfessorId", "Sobrenome" },
-                values: new object[] { 1, "20/01/1990", "Maria", 1, "Jose" });
+                values: new object[] { 1, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maria", 1, "Jose" });
 
             migrationBuilder.InsertData(
                 table: "Alunos",
                 columns: new[] { "Id", "DataNasc", "Nome", "ProfessorId", "Sobrenome" },
-                values: new object[] { 2, "20/01/1995", "Joao", 2, "Paulo" });
+                values: new object[] { 2, new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Joao", 2, "Paulo" });
 
             migrationBuilder.InsertData(
                 table: "Alunos",
                 columns: new[] { "Id", "DataNasc", "Nome", "ProfessorId", "Sobrenome" },
-                values: new object[] { 3, "25/05/1990", "Alex", 3, "Pereira" });
+                values: new object[] { 3, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alex", 3, "Pereira" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alunos_ProfessorId",

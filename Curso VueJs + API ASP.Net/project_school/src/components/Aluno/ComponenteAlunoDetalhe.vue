@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <ComponenteTitulo :texto="`Aluno: ${aluno.nome}`" :btnVoltar="editar">
       <button v-show="!editar" @click="Editar()" class="btn btnEditar">Editar</button>
     </ComponenteTitulo>
@@ -43,11 +43,11 @@
         <tr>
           <td class="colPequeno">Professor:</td>
           <td>
-            <select v-model="aluno.professor" v-if="editar">
+            <select v-model="aluno.professor.id" v-if="editar">
               <option
-                v-for="(professor, index) in professores"
+                v-for="(professor, index) in this.professores"
                 :key="index"
-                v-bind:value="professor"
+                v-bind:value="professor.id"
               >
                 {{ professor.nome }}
               </option>
@@ -82,25 +82,30 @@ export default {
       professores: [],
       alunoId: this.$route.params.id,
       editar: false,
+      loading: true
     };
   },
   created() {
-    this.CarregueAluno();
     this.CarregueProfessores();
-    this.tipoCampo = "hidden";
   },
   methods: {
-    CarregueAluno() {
-      if (this.alunoId) {
-        Api.get("/aluno/" + this.alunoId).then(
-          (alunos) => (this.aluno = alunos.data)
-        );
-      }
-    },
     CarregueProfessores() {
       Api.get("/professor").then((professores) => {
         this.professores = professores.data;
+        this.CarregueAluno();
       });
+    },
+    CarregueAluno() {
+      if (this.alunoId) {
+        Api
+        .get("/aluno/" + this.alunoId)
+        .then(
+          (alunos) => {
+            this.aluno = alunos.data;
+            this.loading = false;
+          }
+        );
+      }
     },
     Editar() {
       this.editar = !this.editar;
@@ -111,11 +116,17 @@ export default {
         nome: this.aluno.nome,
         sobrenome: this.aluno.sobrenome,
         dataNasc: this.aluno.dataNasc,
-        professor: this.aluno.professor
+        professorid: this.aluno.professor.id
       }
 
-      Api.put("/aluno/" + _alunoEditar.id, _alunoEditar);
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+      Api
+      .put("/aluno/" + _alunoEditar.id, _alunoEditar)
+      .then((aluno) => {
+        this.aluno = aluno.data;
+        this.editar = !this.editar;
+      });
+
+      //window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
     cancelar(){
       this.editar = !this.editar;

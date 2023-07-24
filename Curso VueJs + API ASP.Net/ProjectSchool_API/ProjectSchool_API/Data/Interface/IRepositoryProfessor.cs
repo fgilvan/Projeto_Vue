@@ -10,6 +10,6 @@ namespace ProjectSchool_API.Data.Interface
     {
         Task<Professor[]> GetAllProfessoresAsync(bool includeAluno);
         
-        Task<Professor> GetProfessorAsyncById(int professorId,bool includeAluno);
+        Task<Professor> GetProfessorAsyncById(int professorId, bool includeAluno);
     }
 }
